@@ -1,0 +1,89 @@
+<!-- templates/index.html -->
+{% extends "base.html" %}
+{% block content %}
+<!-- Particles Background -->
+<div id="particles-js" class="fixed inset-0 z-0"></div>
+
+<div class="container mx-auto px-4 py-16 relative z-10">
+    <div class="text-center mb-16">
+        <!-- Typing Animation -->
+        <h1 class="text-white text-4xl font-bold mb-4 typing-animation">Alishba Abbas</h1>
+        <p class="text-white text-xl typing-animation-delay">AI/ML Developer | Web Developer</p>
+        <p class="text-gray-300 mt-4 typing-animation-delay-2">Shaping the Future of AI & Web Development</p>
+    </div>
+    
+
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for project in projects %}
+        <div class="glow project-card transform hover:scale-105 transition-all duration-300">
+            <div class="relative overflow-hidden">
+                <img src="{{ url_for('static', filename='images/' + project.image) }}" 
+                     alt="{{ project.title }}" 
+                     class="w-full h-48 object-cover transition-transform duration-500 hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
+                    <a href="{{ url_for('redirect_to_github', github_url=project.github) }}" 
+                       class="w-full text-center py-2 bg-black/50 text-white hover:bg-primary-600">
+                        View Project
+                    </a>
+                </div>
+            </div>
+            <div class="p-6">
+                <h3 class="gradient-text text-xl font-semibold mb-2">{{ project.title }}</h3>
+                <p class="text-gray-300 mb-4">{{ project.description }}</p>
+                <div class="flex flex-wrap gap-2">
+                    {% for tag in project.tags %}
+                    <span class="tag">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Skills Section with Animation -->
+    <div class="mt-20 skill-section">
+        <h2 class="gradient-text text-3xl font-bold text-center mb-12">Technical Skills</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Python -->
+            <div class="glow project-card p-6 animate-on-scroll">
+                <h3 class="gradient-text text-xl mb-4">Python</h3>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 90%"></div>
+                </div>
+            </div>
+            <!-- Machine Learning -->
+            <div class="glow project-card p-6 animate-on-scroll">
+                <h3 class="gradient-text text-xl mb-4">Machine Learning</h3>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 85%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Initialize particles and animations -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="{{ url_for('static', filename='js/particles.js') }}"></script>
+<script>
+    // Typing Animation
+    document.addEventListener('DOMContentLoaded', function() {
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach((element) => {
+            observer.observe(element);
+        });
+    });
+</script>
+{% endblock %}

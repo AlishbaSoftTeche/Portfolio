@@ -1,0 +1,444 @@
+/* static/style.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* Modern Color Palette */
+    --gradient-1: linear-gradient(45deg, #FF3366, #FF6B6B);
+    --gradient-2: linear-gradient(45deg, #4158D0, #C850C0, #FFCC70);
+    --gradient-3: linear-gradient(45deg, #8E2DE2, #4A00E0);
+    --gradient-4: linear-gradient(45deg, #00F5A0, #00D9F5);
+    --accent-1: #FF3366;
+    --accent-2: #4158D0;
+    --accent-3: #00F5A0;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #0F172A;
+    color: #fff;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgb(65, 88, 208) 0%, rgb(200, 80, 192) 46.2%, rgb(255, 204, 112) 100.2%);
+    min-height: 100vh;
+}
+
+/* Navbar Styling */
+nav {
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+nav a {
+    color: #fff;
+    position: relative;
+    text-decoration: none;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background: var(--gradient-4);
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        rgba(65, 88, 208, 0.3) 0%,
+        rgba(200, 80, 192, 0.3) 50%,
+        rgba(255, 204, 112, 0.3) 100%
+    );
+    filter: blur(100px);
+    transform: translateZ(0);
+}
+
+/* Project Cards */
+.project-card {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(65, 88, 208, 0.3),
+                0 0 40px rgba(200, 80, 192, 0.2);
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.project-card:hover::before {
+    left: 100%;
+}
+
+/* Tags */
+.tag {
+    background: var(--gradient-4);
+    color: #0F172A;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.tag:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 245, 160, 0.3);
+}
+
+.tag::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transform: rotate(45deg);
+    transition: 0.5s;
+}
+
+.tag:hover::before {
+    transform: rotate(45deg) translate(50%, 50%);
+}
+
+/* Skills Section */
+.skill-bar {
+    height: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.skill-progress {
+    position: absolute;
+    height: 100%;
+    border-radius: 10px;
+    background: var(--gradient-2);
+    animation: shimmer 2s infinite linear;
+    background-size: 200% 100%;
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Contact Section */
+.contact-card {
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+}
+
+.social-link {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    color: #fff;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-link:hover {
+    background: var(--gradient-3);
+    transform: translateX(10px);
+    box-shadow: 0 10px 20px rgba(142, 45, 226, 0.3);
+}
+
+/* Text Gradients */
+.gradient-text {
+    background: var(--gradient-2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-size: 200% 100%;
+    animation: gradientMove 5s infinite linear;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Glowing Effects */
+.glow {
+    position: relative;
+}
+
+.glow::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    box-shadow: 0 0 30px rgba(65, 88, 208, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.glow:hover::after {
+    opacity: 1;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gradient-4);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gradient-1);
+}
+
+/* Loading Animation */
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    border-top: 4px solid #00F5A0;
+    animation: spin 1s linear infinite;
+    position: relative;
+}
+
+.loader::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border-radius: 50%;
+    border: 4px solid transparent;
+    border-top: 4px solid #4158D0;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Add these styles to your existing style.css */
+
+/* Navigation Links */
+.nav-link {
+    position: relative;
+    color: #fff;
+    font-weight: 500;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gradient-4);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #00F5A0;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Social Icons */
+.social-icon-link {
+    color: #fff;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    padding: 0.5rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.social-icon-link:hover {
+    opacity: 1;
+    transform: translateY(-3px);
+    background: var(--gradient-3);
+    box-shadow: 0 10px 20px rgba(142, 45, 226, 0.2);
+}
+
+/* Responsive Navigation */
+@media (max-width: 768px) {
+    nav .flex {
+        flex-direction: column;
+        padding: 1rem 0;
+    }
+    
+    nav .space-x-8 {
+        margin-top: 1rem;
+        justify-content: center;
+    }
+    
+    .nav-link {
+        padding: 0.5rem 1rem;
+    }
+}
+
+
+
+/* Add to your existing style.css */
+
+/* Typing Animation */
+.typing-animation {
+    opacity: 0;
+    animation: fadeIn 1s ease forwards,
+               slideUp 1s ease forwards;
+}
+
+.typing-animation-delay {
+    opacity: 0;
+    animation: fadeIn 1s ease 0.5s forwards,
+               slideUp 1s ease 0.5s forwards;
+}
+
+.typing-animation-delay-2 {
+    opacity: 0;
+    animation: fadeIn 1s ease 1s forwards,
+               slideUp 1s ease 1s forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); }
+    to { transform: translateY(0); }
+}
+
+/* Skill Bar Animation */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.animate-on-scroll.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Particles Container */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    z-index: 1;
+}
+
+/* Project Card Hover Effects */
+.project-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.project-card:hover::before {
+    left: 100%;
+}
+
+/* Enhanced Tag Animations */
+.tag {
+    position: relative;
+    overflow: hidden;
+}
+
+.tag::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+}
+
+.tag:hover::after {
+    transform: translateX(100%);
+}
